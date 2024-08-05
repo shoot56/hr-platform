@@ -142,6 +142,7 @@ Please take the time to review the offer letter and let us know if you have any 
                 'name' => 'hr_when',
                 'type' => 'text',
                 'required' => 0,
+                'default_value' => 'Flexible hours',
                 'wrapper' => array (
                     'width' => '50',
                     'class' => '',
@@ -154,8 +155,23 @@ Please take the time to review the offer letter and let us know if you have any 
                 'name' => 'hr_where',
                 'type' => 'text',
                 'required' => 0,
+                'default_value' => 'Remote',
                 'wrapper' => array (
                     'width' => '50',
+                    'class' => '',
+                    'id' => '',
+                ),
+            ),
+            array(
+                'key' => 'field_hr_information',
+                'label' => "Information",
+                'name' => 'hr_information',
+                'type' => 'textarea',
+                'required' => 0,
+                "rows" => 4,
+                "new_lines" => "br",
+                'wrapper' => array (
+                    'width' => '100',
                     'class' => '',
                     'id' => '',
                 ),

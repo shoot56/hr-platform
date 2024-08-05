@@ -18,17 +18,13 @@ function pixelsToPoints($pixels, $dpi = 174.5) {
     return ($pixels / $dpi) * 72;
 }
 
-// $pixels = 283;
-// $cm = pixelsToCm($pixels, $paperWidthPx, $paperWidthCm);
-
-// echo "Размер в см: " . $cm;
-
 use Dompdf\Dompdf;
 
 if (isset($_GET['post_id'])) {
     $post_id = intval($_GET['post_id']);
     $description = get_field('field_hr_description', $post_id);
     $name = get_field('field_hr_name', $post_id);
+    $additionals = get_field('field_hr_information', $post_id);
 
     $data = [];
     $fields = [
@@ -61,56 +57,11 @@ if (isset($_GET['post_id'])) {
         }
     }
 
-    // $data = [
-    //     [
-    //         'label' => 'Job offer',
-    //         'value' => get_field('field_hr_offer_date', $post_id) . '<br>' . htmlspecialchars($name),
-    //     ],
-    //     [
-    //         'label' => 'Position',
-    //         'value' => get_field('field_hr_position', $post_id),
-    //     ],
-    //     [
-    //         'label' => 'Starting date:',
-    //         'value' => get_field('field_hr_starting_date', $post_id),
-    //     ],
-    //     [
-    //         'label' => 'Project',
-    //         'value' => get_field('field_hr_project', $post_id),
-    //     ],
-    //     [
-    //         'label' => 'Salary:',
-    //         'value' => '$' . get_field('field_hr_salary', $post_id) . '/month',
-    //     ],
-    //     [
-    //         'label' => 'Probationary period',
-    //         'value' => get_field('field_hr_period', $post_id),
-    //     ],
-    //     [
-    //         'label' => 'When',
-    //         'value' => get_field('field_hr_when', $post_id),
-    //     ],
-    //     [
-    //         'label' => 'Where',
-    //         'value' => get_field('field_hr_where', $post_id),
-    //     ],
-    //     [
-    //         'label' => 'Vacation',
-    //         'value' => get_field('field_hr_vacation', $post_id) . ' days',
-    //     ],
-    //     [
-    //         'label' => 'Sick days',
-    //         'value' => get_field('field_hr_sick_days', $post_id) . ' days',
-    //     ]
-    // ];
-
     $cop_image_url = plugins_url('assets/images/cop-dw.png', __DIR__);
     $logo_image_url = plugins_url('assets/images/logo-white.png', __DIR__);
 
-    // Создание экземпляра Dompdf
     $dompdf = new Dompdf(array('enable_remote' => true));
 
-    // Генерация HTML для PDF
     $html_head = '<html>
     <head>
         <style>
@@ -121,7 +72,7 @@ if (isset($_GET['post_id'])) {
                 color: #FFF;
                 font-family: "Poppins", sans-serif;
                 font-family: "Roboto Mono", monospace;
-                padding: 28pt 45pt;
+                padding: 28pt 45pt 0;
                 font-size: 10pt;
             }
             h1 {
@@ -131,7 +82,7 @@ if (isset($_GET['post_id'])) {
                 margin: 1em 0;
             }
             .logo {
-                margin: 0 0 51pt;
+                margin: 0 0 31pt;
             }
             .logo-img {
                 width: 116pt;
@@ -163,7 +114,7 @@ if (isset($_GET['post_id'])) {
                 font-family: "Poppins", sans-serif;
             }
             .wellcome-block__text {
-                font-size: 6.5pt;
+                font-size: 7pt;
             }
 
             .wellcome-block__image {
@@ -268,8 +219,21 @@ if (isset($_GET['post_id'])) {
         if ($row_count % $max_cols != 0) {
             $html_body .= '</tr>';
         }
+    $html_body .= '</table>';
+
+    if ($additionals) {
+        $html_body .= '<table><tr><td class="td">
+            <div class="tiles__item">
+            <div class="tiles__label">Special terms and conditions</div>
+            <div class="tiles__text">' . $additionals . '</div>
+            </div>
+        </td></tr></table>';
+        
+    }
+    
+
     $html_body .= '
-    </table>
+    
     <table>
         <tr>
             <td class="td">
@@ -302,19 +266,12 @@ if (isset($_GET['post_id'])) {
     $html .= $html_body;
     $html .= $html_footer;
 
-    // $dompdf->set_option( 'dpi' , '96' );
-
-    // Загрузка HTML в Dompdf
     $dompdf->loadHtml($html);
 
-
-    // Настройка бумаги
     $dompdf->setPaper('A4', 'portrait');
 
-    // Рендеринг PDF
     $dompdf->render();
 
-    // Вывод PDF на экран
     $dompdf->stream('description.pdf', array('Attachment' => 0));
 
     // Путь для сохранения файла

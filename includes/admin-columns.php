@@ -11,9 +11,8 @@ function hr_offers_add_custom_column($columns) {
 
 function hr_offers_custom_column_content($column, $post_id) {
     if ($column === 'tools') {
-        // echo '<button class="button button-small" data-id="' . $post_id . '">Print PDF</button> ';
          echo '<a href="' . plugin_dir_url(__FILE__) . 'generate-pdf.php?post_id=' . $post_id . '" target="_blank" class="button button-small">Show PDF</a> ';
-        echo '<button class="button button-small" data-id="' . $post_id . '">Click me</button>';
+        echo '<button class="button button-small" data-id="' . $post_id . '">Send email</button>';
     }
 }
 
