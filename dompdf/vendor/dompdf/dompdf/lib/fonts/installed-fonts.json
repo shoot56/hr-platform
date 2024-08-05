@@ -1,0 +1,29 @@
+{
+    "poppins": {
+        "100": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/poppins_100_fe515c3509ac19a01331c85f34f23cac",
+        "200": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/poppins_200_e8c3951c97c4286db63d056338166bbb",
+        "300": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/poppins_300_87f0a8a73c876e947643eb7d19bec0b7",
+        "normal": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/poppins_normal_a62832bf75823019dc29c5a9c470d64d",
+        "500": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/poppins_500_a885de0ea35a644243715bf64b6d1a65",
+        "600": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/poppins_600_ca6698540fb485d7b756c91a54a37d8e",
+        "bold": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/poppins_bold_87c49bf24d72f01a4af573680817521f",
+        "800": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/poppins_800_a3f35df90afcc12957674bb493255c2e",
+        "900": "poppins_900_71b6424e9ad5c868ceced6e2a4698840"
+    },
+    "roboto mono": {
+        "100_italic": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_100_italic_12a66c2d3ad9d6962bd750a8483e1c36",
+        "200_italic": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_200_italic_f979bf86f6e58e55247c0da76ae0839d",
+        "300_italic": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_300_italic_4347049e96c2cb0e4adb5e379b1f339f",
+        "italic": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_italic_b6de51b739f488c0f14085dc9d2d126e",
+        "500_italic": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_500_italic_cebf7f4ed711608b8568bbcd525e6362",
+        "600_italic": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_600_italic_a942458d12dde410c34cd9d3119c8b40",
+        "bold_italic": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_bold_italic_7676298c75ec50857f9848f92ace4c33",
+        "100": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_100_0096e562ef39723eeb73cc29116ee118",
+        "200": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_200_b3a465664e0ac8d65ce223adbfce178f",
+        "300": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_300_fec321538db636b4866b8c7d9af87c2c",
+        "normal": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_normal_4bc0b0c44b32a9f9b9f76564b2c6afa1",
+        "500": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_500_a658bb903902ae82c0f8835039bf7f73",
+        "600": "\/Users\/shoot56\/Local Sites\/offer\/app\/public\/wp-content\/plugins\/hr-platform\/dompdf\/vendor\/dompdf\/dompdf\/lib\/fonts\/roboto_mono_600_957fbd94f6016f33a94d696ceab72382",
+        "bold": "roboto_mono_bold_19c1cc1175205657777002ccb3023a27"
+    }
+}
