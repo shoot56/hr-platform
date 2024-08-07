@@ -1,4 +1,5 @@
 <?php
+
 require_once(dirname(__DIR__) . '/dompdf/autoload.inc.php');
 
 require_once(__DIR__ . '/../../../../wp-load.php'); 
@@ -20,8 +21,9 @@ function pixelsToPoints($pixels, $dpi = 174.5) {
 
 use Dompdf\Dompdf;
 
-if (isset($_GET['post_id'])) {
-    $post_id = intval($_GET['post_id']);
+function generate_pdf_for_offer($post_id, $save_to_disk = false) {
+
+    // $post_id = intval($_GET['post_id']);
     $description = get_field('field_hr_description', $post_id);
     $name = get_field('field_hr_name', $post_id);
     $additionals = get_field('field_hr_information', $post_id);
@@ -230,10 +232,7 @@ if (isset($_GET['post_id'])) {
         </td></tr></table>';
         
     }
-    
-
     $html_body .= '
-    
     <table>
         <tr>
             <td class="td">
@@ -272,24 +271,31 @@ if (isset($_GET['post_id'])) {
 
     $dompdf->render();
 
-    $dompdf->stream('description.pdf', array('Attachment' => 0));
+    if ($save_to_disk) {
+        $upload_dir = wp_upload_dir();
+        $save_path = $upload_dir['basedir'] . '/offers/' . $post_id;
+        $save_file = $save_path . '/offer.pdf';
+        if (!file_exists($save_path)) {
+            wp_mkdir_p($save_path);
+        }
+        file_put_contents($save_file, $dompdf->output());
 
-    // Путь для сохранения файла
-    // $upload_dir = wp_upload_dir();
-    // $save_path = $upload_dir['basedir'] . '/offers/' . $post_id;
-    // $save_file = $save_path . '/offer.pdf';
+        // echo "PDF created " . $save_file;
+        return $save_file;
 
-    // // Создание директории, если не существует
-    // if (!file_exists($save_path)) {
-    //     wp_mkdir_p($save_path);
-    // }
+    } else {
+        $dompdf->stream('description.pdf', array('Attachment' => 0));
+    }
 
-    // // Сохранение PDF файла на сервере
-    // file_put_contents($save_file, $dompdf->output());
 
-    // echo "PDF успешно сохранен в " . $save_file;
     exit;
 }
+
+if (isset($_GET['post_id'])) {
+    $post_id = intval($_GET['post_id']);
+    generate_pdf_for_offer($post_id, false);
+}
+
 ?>
 
 

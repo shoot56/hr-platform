@@ -39,10 +39,25 @@ function hr_offers_enqueue_admin_scripts() {
 
 add_action('admin_enqueue_scripts', 'hr_offers_enqueue_admin_scripts');
 
+add_action('save_post', 'save_pdf_on_post_save', 10, 3);
 
+function save_pdf_on_post_save($post_id, $post, $update) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (wp_is_post_revision($post_id) || wp_is_post_autosave($post_id)) {
+        return;
+    }
+    if ($post->post_type != 'hr-offers' || $post_id == 0) {
+        return;
+    }
+    generate_pdf_for_offer($post_id, true);
+}
 
 
 include_once plugin_dir_path(__FILE__) . 'includes/post-type.php';
 include_once plugin_dir_path(__FILE__) . 'includes/acf-fields.php';
 require_once plugin_dir_path(__FILE__) . 'includes/admin-columns.php';
 require_once plugin_dir_path(__FILE__) . 'includes/offers-email-modal.php';
+require_once plugin_dir_path(__FILE__) . 'includes/generate-pdf.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin-post-buttons.php';
