@@ -51,7 +51,7 @@ add_action('admin_enqueue_scripts', 'hr_offers_enqueue_admin_scripts');
  *
  * @return void
  */
-function hr_contract_link_rewrite_rule()
+function hr_contract_link_rewrite_rule(): void
 {
     add_rewrite_rule('^contract/([^/]*)/?', 'index.php?cid=$matches[1]', 'top');
     flush_rewrite_rules();
@@ -59,7 +59,13 @@ function hr_contract_link_rewrite_rule()
 
 add_action('init', 'hr_contract_link_rewrite_rule', 10, 0);
 
-function hr_contract_query_vars_filter($vars)
+/**
+ * Filters the query variables for the HR contracts.
+ *
+ * @param array $vars An array of query variables.
+ * @return array The filtered array of query variables.
+ */
+function hr_contract_query_vars_filter(array $vars): array
 {
     $vars[] .= 'cid';
     return $vars;
@@ -67,7 +73,13 @@ function hr_contract_query_vars_filter($vars)
 
 add_filter('query_vars', 'hr_contract_query_vars_filter');
 
-function hr_contract_template_redirect(){
+/**
+ * Redirects the HR contract template page.
+ *
+ * @return void
+ * @global WP_Query $wp_query The main query object.
+ */
+function hr_contract_template_redirect(): void{
     global $wp_query;
 
     $contractId = $wp_query->get('cid');
