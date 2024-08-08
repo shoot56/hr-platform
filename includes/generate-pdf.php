@@ -100,30 +100,31 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
                 padding: 23pt 212pt 23pt 33pt;
             }
             .wellcome-block__label {
-                font-size: 7pt;
-                color: #66FFA3;
+                font-size: 9pt;
                 font-family: "Poppins", sans-serif;
-                margin: 0 0 6pt;
+                margin: 0 0 2pt;
                 line-height: 1;
                 font-weight: 600;
             }
             .wellcome-block__title {
                 text-transform: uppercase;
-                margin: 0 0 16pt;
-                font-size: 26pt;
+                margin: 0 0 10pt;
+                font-size: 20pt;
                 line-height: 1;
                 font-weight: 600;
                 font-family: "Poppins", sans-serif;
             }
             .wellcome-block__text {
-                font-size: 7pt;
+                font-size: 8pt;
+                height: 150pt;
+
             }
 
             .wellcome-block__image {
                 width: 217pt;
                 height: 267pt;
                 float: right;
-                margin: -42pt -20pt 0 0;
+                margin: -9pt -20pt 0 0;
             }
             .wellcome-block__image img{
                 width: 100%;
@@ -182,7 +183,7 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
             <div class="wellcome-block__label">With ProCoder Orientation</div>
             <div class="wellcome-block__title">Join the dark side</div>
             <div class="wellcome-block__text">
-                Dear <span style="color: #66FFA3;">' . htmlspecialchars($name) . '</span>, <br>
+                Dear <span>' . htmlspecialchars($name) . '</span>, <br>
                 ' . $description . '
             </div>
         </div>
