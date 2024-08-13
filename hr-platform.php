@@ -60,6 +60,7 @@ function save_pdf_on_post_save($post_id, $post, $update)
     }
     generate_pdf_for_offer($post_id, true);
 }
+
 /**
  * Rewrite rule for HR contract link.
  *
@@ -93,18 +94,50 @@ add_filter('query_vars', 'hr_contract_query_vars_filter');
  * @return void
  * @global WP_Query $wp_query The main query object.
  */
-function hr_contract_template_redirect(): void{
+function hr_contract_template_redirect(): void
+{
     global $wp_query;
 
     $contractId = $wp_query->get('cid');
 
-    if ($contractId){
+    if ($contractId) {
         require plugin_dir_path(__FILE__) . 'pages/contract-template.php';
         die;
     }
 }
 
 add_action('template_redirect', 'hr_contract_template_redirect');
+
+
+function hr_filter_document_content($document_id, $content, $fields)
+{
+    foreach ($fields as $key => $field) {
+        update_field($key, esc_html($field), 'dashboard_' . $document_id);
+    }
+    return $content;
+}
+
+add_filter('esignature_content', function ($document_content, $document_id) {
+
+    preg_match_all('/\{([^}]*)\}/', $document_content, $matches);
+    $fields = $matches[1];
+    foreach ($fields as $field) {
+        $document_content = str_replace(
+            '{' . $field . '}',
+            get_option('dashboard_' . $document_id . '_' . $field) ?? 'not defined',
+            $document_content
+        );
+    }
+
+    return $document_content;
+}, 10, 2);
+
+
+add_action('esig_document_advanced_settings', function ($document_id, $data) {
+    if (is_plugin_active('hr-platform/hr-platform.php') && isset($data['acf'])) {
+        $data['document_content'] = hr_filter_document_content($document_id, $data['document_content'], $data['acf']);
+    }
+}, 10, 2);
 
 include_once plugin_dir_path(__FILE__) . 'includes/post-type.php';
 include_once plugin_dir_path(__FILE__) . 'includes/acf-fields.php';
