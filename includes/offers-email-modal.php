@@ -31,8 +31,8 @@ function hr_offers_admin_footer() {
                 <div class="hr-email-modal__row">
                     <label class="hr-email-modal__label" for="message">Message Body:</label>
                     <textarea rows="12" class="hr-email-modal__input" name="message" required>Hi [name],
-We're thrilled to offer you the opportunity to join our team and embark on an exciting journey through the world of technology. At ProCoders, we believe in the power of collaboration and growth, and with your help, we're ready to reach new heights!
-Attached, you'll find our job offer, which contains all the details about our future collaboration. If you have any questions, feel free to reach out — we're always here and happy to discuss them.</textarea>
+We are thrilled to offer you the opportunity to join our team and embark on an exciting journey through the world of technology. At ProCoders, we believe in the power of collaboration and growth, and with your help, we are ready to reach new heights!
+Attached, you will find our job offer, which contains all the details about our future collaboration. If you have any questions, feel free to reach out — we are always here and happy to discuss them.</textarea>
                 </div>
                 <button type="submit" class="button button-primary">Send</button>
             </form>
