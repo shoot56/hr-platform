@@ -61,6 +61,7 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
 
     $cop_image_url = plugins_url('assets/images/cop-dw.png', __DIR__);
     $logo_image_url = plugins_url('assets/images/logo-white.png', __DIR__);
+    $join_image_url = plugins_url('assets/images/join-text.png', __DIR__);
 
     $dompdf = new Dompdf(array('enable_remote' => true));
 
@@ -93,18 +94,20 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
             .wellcome-block {
                 position: relative;
                 width: 100%;
-                background-color: #4F52FF;
+                border-top: 1px solid #3B4C62;
+                border-bottom: 1px solid #3B4C62;
                 margin: 0 0 15pt;
             }
             .wellcome-block__wrap {
-                padding: 23pt 212pt 23pt 33pt;
+                padding: 23pt 212pt 23pt 0;
             }
             .wellcome-block__label {
-                font-size: 9pt;
+                font-size: 11pt;
                 font-family: "Poppins", sans-serif;
-                margin: 0 0 2pt;
+                margin: 0 0 10pt;
                 line-height: 1;
                 font-weight: 600;
+                color: #0096FF;
             }
             .wellcome-block__title {
                 text-transform: uppercase;
@@ -114,17 +117,17 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
                 font-weight: 600;
                 font-family: "Poppins", sans-serif;
             }
-            .wellcome-block__text {
-                font-size: 8pt;
-                height: 150pt;
-
+            .wellcome-block__title img{
+                width: 360pt;
+                heigth: auto;
+                vertical-align: top;
             }
 
             .wellcome-block__image {
-                width: 217pt;
-                height: 267pt;
+                width: 147pt;
+                height: 97pt;
                 float: right;
-                margin: -9pt -20pt 0 0;
+                margin: -64pt -20pt 0 0;
             }
             .wellcome-block__image img{
                 width: 100%;
@@ -180,11 +183,9 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
             <img src="' . $cop_image_url . '" class="cop-img">
         </div>
         <div class="wellcome-block__wrap">
-            <div class="wellcome-block__label">With ProCoder Orientation</div>
-            <div class="wellcome-block__title">Join the dark side</div>
-            <div class="wellcome-block__text">
-                Dear <span>' . htmlspecialchars($name) . '</span>, <br>
-                ' . $description . '
+            <div class="wellcome-block__label">Dear, <span>' . htmlspecialchars($name) . '</span>!</div>
+            <div class="wellcome-block__title">
+                <img src="' . $join_image_url . '" class="join-img">
             </div>
         </div>
     </div>
@@ -285,7 +286,7 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
         return $save_file;
 
     } else {
-        $dompdf->stream('description.pdf', array('Attachment' => 0));
+        $dompdf->stream('offer.pdf', array('Attachment' => 0));
     }
 
 
