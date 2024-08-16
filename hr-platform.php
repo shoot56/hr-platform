@@ -61,54 +61,6 @@ function save_pdf_on_post_save($post_id, $post, $update)
     generate_pdf_for_offer($post_id, true);
 }
 
-/**
- * Rewrite rule for HR contract link.
- *
- * @return void
- */
-function hr_contract_link_rewrite_rule(): void
-{
-    add_rewrite_rule('^contract/([^/]*)/?', 'index.php?cid=$matches[1]', 'top');
-    flush_rewrite_rules();
-}
-
-add_action('init', 'hr_contract_link_rewrite_rule', 10, 0);
-
-/**
- * Filters the query variables for the HR contracts.
- *
- * @param array $vars An array of query variables.
- * @return array The filtered array of query variables.
- */
-function hr_contract_query_vars_filter(array $vars): array
-{
-    $vars[] .= 'cid';
-    return $vars;
-}
-
-add_filter('query_vars', 'hr_contract_query_vars_filter');
-
-/**
- * Redirects the HR contract template page.
- *
- * @return void
- * @global WP_Query $wp_query The main query object.
- */
-function hr_contract_template_redirect(): void
-{
-    global $wp_query;
-
-    $contractId = $wp_query->get('cid');
-
-    if ($contractId) {
-        require plugin_dir_path(__FILE__) . 'pages/contract-template.php';
-        die;
-    }
-}
-
-add_action('template_redirect', 'hr_contract_template_redirect');
-
-
 function hr_filter_document_content($document_id, $content, $fields)
 {
     foreach ($fields as $key => $field) {
