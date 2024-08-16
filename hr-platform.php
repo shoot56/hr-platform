@@ -2,7 +2,7 @@
 /*
 Plugin Name: HR Platform
 Description: Platform for recruiters and HR
-Version: 1.0
+Version: 1.0.1
 Author: Shutko Dmytro
 Author URI: http://procoders.tech
 
@@ -14,10 +14,11 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+function hr_platform_check_acf_plugin() {
+    $acf_free_active = is_plugin_active('advanced-custom-fields/acf.php');
+    $acf_pro_active = is_plugin_active('advanced-custom-fields-pro/acf.php');
 
-function hr_platform_check_acf_plugin()
-{
-    if (!is_plugin_active('advanced-custom-fields/acf.php')) {
+    if (!$acf_free_active && !$acf_pro_active) {
         add_action('admin_notices', 'hr_platform_acf_notice');
     }
 }
