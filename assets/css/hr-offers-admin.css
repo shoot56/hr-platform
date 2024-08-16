@@ -33,3 +33,23 @@
 .hr-email-modal-close:focus {
     color: black;
 }
+
+.hr-email-modal {
+
+}
+.hr-email-modal__row {
+    margin: 0 0 20px;
+}
+.hr-email-modal__label {
+    display: block;
+    margin: 0 0 5px;
+}
+.hr-email-modal__input {
+    box-sizing: border-box;
+    width: 100%;
+}
+.hr-offer-button {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+}

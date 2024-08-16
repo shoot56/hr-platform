@@ -9,24 +9,30 @@ function hr_offers_admin_footer() {
             <form id="hr-email-modal-form">
                 <input type="hidden" name="action" value="send_hr_offer_email">
                 <input type="hidden" name="post_id">
-                <div>
-                    <label for="candidate_email">Candidate Email:</label>
-                    <input type="email" name="candidate_email" required>
+                <div class="hr-email-modal__row">
+                    <label class="hr-email-modal__label" for="candidate_email">Candidate Email:</label>
+                    <input class="hr-email-modal__input" type="email" name="candidate_email" required>
                 </div>
-                <div>
-                    <label for="sender_email">Sender Email:</label>
-                    <select name="sender_email">
-                        <option value="noreply@procoders.tech">noreply@procoders.tech</option>
-                        <option value="info@procoders.tech">info@procoders.tech</option>
+                <div class="hr-email-modal__row">
+                    <label class="hr-email-modal__label" for="sender_email">Sender Email:</label>
+                    <select class="hr-email-modal__input" name="sender_email" required>
+                        <option value=""></option>
+                        <option value="ksu@procoders.tech">Kseniya Pavichenko</option>
+                        <option value="vic@procoders.tech">Victoria Zakordonets</option>
+                        <option value="gogenkoli@procoders.tech">Liliya Gogenko</option>
+                        <option value="belinat@procoders.tech">Belina Torba</option>
+                        <option value="ok@procoders.tech">Oleg Kopachovets</option>
                     </select>
                 </div>
-                <div>
-                    <label for="subject">Subject:</label>
-                    <input type="text" name="subject" value="Job Offer">
+                <div class="hr-email-modal__row">
+                    <label class="hr-email-modal__label" for="subject">Subject:</label>
+                    <input class="hr-email-modal__input" type="text" name="subject" value="Job Offer from ProCoders" required>
                 </div>
-                <div>
-                    <label for="message">Message Body:</label>
-                    <textarea name="message">Hello [name],</textarea>
+                <div class="hr-email-modal__row">
+                    <label class="hr-email-modal__label" for="message">Message Body:</label>
+                    <textarea rows="12" class="hr-email-modal__input" name="message" required>Hi [name],
+We're thrilled to offer you the opportunity to join our team and embark on an exciting journey through the world of technology. At ProCoders, we believe in the power of collaboration and growth, and with your help, we're ready to reach new heights!
+Attached, you'll find our job offer, which contains all the details about our future collaboration. If you have any questions, feel free to reach out — we're always here and happy to discuss them.</textarea>
                 </div>
                 <button type="submit" class="button button-primary">Send</button>
             </form>
