@@ -8,25 +8,25 @@ function hr_platform_add_acf_fields()
             'title' => 'HR Offers Fields',
             'fields' => array(
                 array(
-                    'key' => 'field_hr_description',
-                    'label' => 'Description',
-                    'name' => 'hr_description',
-                    'type' => 'textarea',
-                    'required' => 1,
-                    "rows" => 4,
-                    "new_lines" => "br",
-                    'default_value' => 'I hope this message finds you well. Congratulations on receiving the job offer! We are thrilled to have you join our team and look forward to the valuable contributions you will bring.
-
-Please take the time to review the offer letter and let us know if you have any questions or need any further information. We are here to assist you in any way possible to ensure a smooth transition into your new role.',
-                ),
-                array(
                     'key' => 'field_hr_name',
                     'label' => "Recipient's Name",
                     'name' => 'hr_name',
                     'type' => 'text',
                     'required' => 1,
                     'wrapper' => array(
-                        'width' => '34',
+                        'width' => '25',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                ),
+                array(
+                    'key' => 'field_hr_second_name',
+                    'label' => "Recipient's Second Name",
+                    'name' => 'hr_second_name',
+                    'type' => 'text',
+                    'required' => 1,
+                    'wrapper' => array(
+                        'width' => '25',
                         'class' => '',
                         'id' => '',
                     ),
@@ -40,7 +40,7 @@ Please take the time to review the offer letter and let us know if you have any 
                     'return_format' => 'j.m.Y',
                     'required' => 1,
                     'wrapper' => array(
-                        'width' => '33',
+                        'width' => '25',
                         'class' => '',
                         'id' => '',
                     ),
@@ -55,7 +55,7 @@ Please take the time to review the offer letter and let us know if you have any 
                     "prepend" => "$",
                     "append" => "/month",
                     'wrapper' => array(
-                        'width' => '33',
+                        'width' => '25',
                         'class' => '',
                         'id' => '',
                     ),

@@ -24,8 +24,8 @@ use Dompdf\Dompdf;
 function generate_pdf_for_offer($post_id, $save_to_disk = false) {
 
     // $post_id = intval($_GET['post_id']);
-    $description = get_field('field_hr_description', $post_id);
     $name = get_field('field_hr_name', $post_id);
+    $second_name = get_field('field_hr_second_name', $post_id);
     $additionals = get_field('field_hr_information', $post_id);
 
     $data = [];
@@ -49,7 +49,7 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
                 $value = '$' . number_format($value) . '/month'; 
             }
             if ($field_key == 'field_hr_offer_date') {
-                $value = $value . '<br>' . htmlspecialchars($name); 
+                $value = $value . '<br>' . htmlspecialchars($name . ' ' . $second_name); 
             }
 
             $data[] = [
