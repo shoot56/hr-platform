@@ -31,7 +31,9 @@ function hr_offers_admin_footer() {
                 <div class="hr-email-modal__row">
                     <label class="hr-email-modal__label" for="message">Message Body:</label>
                     <textarea rows="12" class="hr-email-modal__input" name="message" required>I’m super excited to share an opportunity with you to join our team at ProCoders! 🚀✨ We’re all about collaboration and growth here, and I truly believe that with your help, we can achieve amazing things together.
+
 Attached, you’ll find the job offer 📄 with all the details about our potential collaboration. If you have any questions or just want to chat 💬 about anything in the offer, don’t hesitate to reach out. I’m always here and happy to discuss it anytime.
+
 Looking forward to hearing your thoughts! 😊
 </textarea>
                 </div>
@@ -51,7 +53,7 @@ function hr_offers_send_email() {
         $candidate_email = sanitize_email($_POST['candidate_email']);
         $sender_email = sanitize_email($_POST['sender_email']);
         $subject = sanitize_text_field($_POST['subject']);
-        $message_wellcome = 'Hi <strong>' . get_field('field_hr_name', $post_id) . '</strong>,';
+        $message_wellcome = '<p>Hi <strong>' . get_field('field_hr_name', $post_id) . '</strong>,</p>';
         // $message_text = sanitize_text_field($_POST['message']);
         // $message_text = wp_kses_post($_POST['message']);
         $message_text = wpautop($_POST['message']);
