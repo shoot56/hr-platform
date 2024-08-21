@@ -2,7 +2,7 @@
 /*
 Plugin Name: HR Platform
 Description: Platform for recruiters and HR
-Version: 1.0.7
+Version: 1.0.8
 Author: Shutko Dmytro
 Author URI: http://procoders.tech
 

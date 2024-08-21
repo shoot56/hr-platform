@@ -27,6 +27,12 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
     $name = get_field('field_hr_name', $post_id);
     $second_name = get_field('field_hr_second_name', $post_id);
     $additionals = get_field('field_hr_information', $post_id);
+    $salary_type = get_field('field_hr_salary_type', $post_id);
+    if ($salary_type == 'hourly') {
+        $salary_field = 'field_hr_hourly_rate';
+    } else {
+        $salary_field = 'field_hr_salary';
+    }
 
     $data = [];
     $fields = [
@@ -34,7 +40,7 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
         'field_hr_position' => 'Position',
         'field_hr_starting_date' => 'Starting date',
         'field_hr_project' => 'Project',
-        'field_hr_salary' => 'Salary',
+        $salary_field => 'Salary',
         'field_hr_period' => 'Probationary period',
         'field_hr_when' => 'When',
         'field_hr_where' => 'Where',
@@ -45,8 +51,12 @@ function generate_pdf_for_offer($post_id, $save_to_disk = false) {
     foreach ($fields as $field_key => $label) {
         $value = get_field($field_key, $post_id);
         if (!empty($value)) {
-            if ($field_key == 'field_hr_salary') {
-                $value = '$' . number_format($value) . '/month'; 
+            if ($field_key == 'field_hr_salary' || $field_key == 'field_hr_hourly_rate') {
+                if ($salary_type == 'hourly') {
+                    $value = '$' . number_format($value) . '/hour';
+                } else {
+                    $value = '$' . number_format($value) . '/month';
+                }
             }
             if ($field_key == 'field_hr_offer_date') {
                 $value = $value . '<br>' . htmlspecialchars($name . ' ' . $second_name); 
