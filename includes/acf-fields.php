@@ -26,7 +26,7 @@ function hr_platform_add_acf_fields()
                     'type' => 'text',
                     'required' => 1,
                     'wrapper' => array(
-                        'width' => '25',
+                        'width' => '20',
                         'class' => '',
                         'id' => '',
                     ),
@@ -40,14 +40,31 @@ function hr_platform_add_acf_fields()
                     'return_format' => 'j.m.Y',
                     'required' => 1,
                     'wrapper' => array(
-                        'width' => '25',
+                        'width' => '20',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                ),
+                array(
+                    'key' => 'field_hr_salary_type',
+                    'label' => 'Salary Type',
+                    'name' => 'hr_salary_type',
+                    'type' => 'radio',
+                    'choices' => array(
+                        'monthly' => 'Monthly Salary',
+                        'hourly' => 'Hourly Rate',
+                    ),
+                    'layout' => 'horizontal',
+                    'default_value' => 'monthly',
+                    'wrapper' => array(
+                        'width' => '15',
                         'class' => '',
                         'id' => '',
                     ),
                 ),
                 array(
                     'key' => 'field_hr_salary',
-                    'label' => "Salary",
+                    'label' => "Monthly Salary",
                     'name' => 'hr_salary',
                     'type' => 'number',
                     'required' => 1,
@@ -55,11 +72,59 @@ function hr_platform_add_acf_fields()
                     "prepend" => "$",
                     "append" => "/month",
                     'wrapper' => array(
-                        'width' => '25',
+                        'width' => '20',
                         'class' => '',
                         'id' => '',
                     ),
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_hr_salary_type',
+                                'operator' => '==',
+                                'value' => 'monthly',
+                            ),
+                        ),
+                    ),
                 ),
+                array(
+                    'key' => 'field_hr_hourly_rate',
+                    'label' => "Hourly Rate",
+                    'name' => 'hr_hourly_rate',
+                    'type' => 'number',
+                    'required' => 1,
+                    'placeholder' => '20',
+                    "prepend" => "$",
+                    "append" => "/hour",
+                    'wrapper' => array(
+                        'width' => '20',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_hr_salary_type',
+                                'operator' => '==',
+                                'value' => 'hourly',
+                            ),
+                        ),
+                    ),
+                ),
+                // array(
+                //     'key' => 'field_hr_salary',
+                //     'label' => "Salary",
+                //     'name' => 'hr_salary',
+                //     'type' => 'number',
+                //     'required' => 1,
+                //     'placeholder' => '1200',
+                //     "prepend" => "$",
+                //     "append" => "/month",
+                //     'wrapper' => array(
+                //         'width' => '25',
+                //         'class' => '',
+                //         'id' => '',
+                //     ),
+                // ),
                 array(
                     'key' => 'field_hr_position',
                     'label' => "Position",
