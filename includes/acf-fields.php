@@ -68,7 +68,6 @@ function hr_platform_add_acf_fields()
                     'name' => 'hr_salary',
                     'type' => 'number',
                     'required' => 1,
-                    'placeholder' => '1200',
                     "prepend" => "$",
                     "append" => "/month",
                     'wrapper' => array(
@@ -92,7 +91,6 @@ function hr_platform_add_acf_fields()
                     'name' => 'hr_hourly_rate',
                     'type' => 'number',
                     'required' => 1,
-                    'placeholder' => '20',
                     "prepend" => "$",
                     "append" => "/hour",
                     'wrapper' => array(
@@ -110,27 +108,11 @@ function hr_platform_add_acf_fields()
                         ),
                     ),
                 ),
-                // array(
-                //     'key' => 'field_hr_salary',
-                //     'label' => "Salary",
-                //     'name' => 'hr_salary',
-                //     'type' => 'number',
-                //     'required' => 1,
-                //     'placeholder' => '1200',
-                //     "prepend" => "$",
-                //     "append" => "/month",
-                //     'wrapper' => array(
-                //         'width' => '25',
-                //         'class' => '',
-                //         'id' => '',
-                //     ),
-                // ),
                 array(
                     'key' => 'field_hr_position',
                     'label' => "Position",
                     'name' => 'hr_position',
                     'type' => 'text',
-                    'placeholder' => 'UI/UX Designer',
                     'required' => 1,
                     'wrapper' => array(
                         'width' => '50',
@@ -230,7 +212,7 @@ function hr_platform_add_acf_fields()
                 ),
                 array(
                     'key' => 'field_hr_information',
-                    'label' => "Information",
+                    'label' => "Special terms and conditions",
                     'name' => 'hr_information',
                     'type' => 'textarea',
                     'required' => 0,
