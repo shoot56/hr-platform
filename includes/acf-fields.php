@@ -245,7 +245,7 @@ function hr_platform_add_acf_fields()
                 array(
                     'key' => 'field_sign_name',
                     'label' => "Recipient's Name",
-                    'name' => 'hr_name',
+                    'name' => 'sign_name',
                     'instructions' => 'Responsible for {sign_name}',
                     'type' => 'text',
                     'required' => 1,
@@ -258,7 +258,7 @@ function hr_platform_add_acf_fields()
                 array(
                     'key' => 'field_sign_lastname',
                     'label' => "Recipient's Lastname",
-                    'name' => 'hr_name',
+                    'name' => 'sign_lastname',
                     'instructions' => 'Responsible for {sign_lastname}',
                     'type' => 'text',
                     'required' => 1,
@@ -269,9 +269,10 @@ function hr_platform_add_acf_fields()
                     ),
                 ),
                 array(
-                    'key' => 'field_hr_offer_date',
+                    'key' => 'field_offer_date',
                     'label' => "Offer Date",
-                    'name' => 'hr_offer_date',
+                    'name' => 'sign_offer_date',
+                    'instructions' => 'Responsible for {sign_offer_date}',
                     'type' => 'date_picker',
                     'display_format' => 'j.m.Y',
                     'return_format' => 'j.m.Y',
