@@ -299,6 +299,67 @@ function hr_platform_add_acf_fields()
         ));
 
         acf_add_local_field_group(array(
+            'key' => 'group_hr_confidentiality_and_intellectual_property_rights_undertaking',
+            'title' => 'Confidentiality and Intellectual Property Rights Undertaking',
+            'fields' => array(
+                array(
+                    'key' => 'field_sign_name',
+                    'label' => "Recipient's Name",
+                    'name' => 'sign_name',
+                    'instructions' => 'Responsible for {sign_name}',
+                    'type' => 'text',
+                    'required' => 1,
+                    'wrapper' => array(
+                        'width' => '34',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                ),
+                array(
+                    'key' => 'field_sign_lastname',
+                    'label' => "Recipient's Lastname",
+                    'name' => 'sign_lastname',
+                    'instructions' => 'Responsible for {sign_lastname}',
+                    'type' => 'text',
+                    'required' => 1,
+                    'wrapper' => array(
+                        'width' => '34',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                ),
+                array(
+                    'key' => 'field_start_date',
+                    'label' => "Start Date",
+                    'name' => 'sign_start_date',
+                    'instructions' => 'Responsible for {sign_start_date}',
+                    'type' => 'date_picker',
+                    'display_format' => 'j.m.Y',
+                    'return_format' => 'j.m.Y',
+                    'required' => 1,
+                    'wrapper' => array(
+                        'width' => '33',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                )
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'esign',
+                    ),
+                ),
+            ),
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'field',
+        ));
+
+
+        acf_add_local_field_group(array(
             'key' => 'group_hr_nda',
             'title' => 'NDA Fields',
             'fields' => array(
