@@ -2,7 +2,7 @@
 /*
 Plugin Name: HR Platform
 Description: Platform for recruiters and HR
-Version: 1.1.2
+Version: 1.1.3
 Author: Shutko Dmytro
 Author URI: http://procoders.tech
 
@@ -103,7 +103,7 @@ add_filter('esig-document-notification-content', function () {
         $group_fields = $group_data['fields'];
         $shortcodes_list .= '<div class="' . $group_key . '" ><strong>' . $group_title . '</strong><ul style="padding:10px 0 15px">';
         foreach ($group_fields as $field_key => $field_label) {
-            $shortcodes_list .= '<li><input onclick="this.select()" type="text" value="{' . $field_key . '}" /> - ' . $field_label . '</li>';
+            $shortcodes_list .= '<li><input readonly onclick="this.select()" type="text" value="{' . $field_key . '}" /> - ' . $field_label . '</li>';
         }
         $shortcodes_list .= '</ul></div>';
     }
@@ -198,8 +198,8 @@ function render_form($doc_id)
     return $doc_id;
 }
 
-add_action('hr_add_acf_form', 'render_form', 10, 1);
-//add_action('esig_display_advanced_settings', 'render_form', 10, 1);
+//add_action('hr_add_acf_form', 'render_form', 10, 1);
+add_action('esig_display_advanced_settings', 'render_form', 10, 1);
 
 include_once plugin_dir_path(__FILE__) . 'includes/post-type.php';
 include_once plugin_dir_path(__FILE__) . 'includes/acf-fields.php';
