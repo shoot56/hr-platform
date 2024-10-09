@@ -248,7 +248,7 @@ function hr_platform_add_acf_fields()
                     'name' => 'sign_name',
                     'instructions' => 'Responsible for {sign_name}',
                     'type' => 'text',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '34',
                         'class' => '',
@@ -261,7 +261,7 @@ function hr_platform_add_acf_fields()
                     'name' => 'sign_lastname',
                     'instructions' => 'Responsible for {sign_lastname}',
                     'type' => 'text',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '34',
                         'class' => '',
@@ -276,7 +276,7 @@ function hr_platform_add_acf_fields()
                     'type' => 'date_picker',
                     'display_format' => 'j.m.Y',
                     'return_format' => 'j.m.Y',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '33',
                         'class' => '',
@@ -308,7 +308,7 @@ function hr_platform_add_acf_fields()
                     'name' => 'sign_name',
                     'instructions' => 'Responsible for {sign_name}',
                     'type' => 'text',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '34',
                         'class' => '',
@@ -321,7 +321,7 @@ function hr_platform_add_acf_fields()
                     'name' => 'sign_lastname',
                     'instructions' => 'Responsible for {sign_lastname}',
                     'type' => 'text',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '34',
                         'class' => '',
@@ -336,7 +336,7 @@ function hr_platform_add_acf_fields()
                     'type' => 'date_picker',
                     'display_format' => 'j.m.Y',
                     'return_format' => 'j.m.Y',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '33',
                         'class' => '',
@@ -369,7 +369,7 @@ function hr_platform_add_acf_fields()
                     'name' => 'sign_name',
                     'instructions' => 'Responsible for {sign_name}',
                     'type' => 'text',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '34',
                         'class' => '',
@@ -382,7 +382,7 @@ function hr_platform_add_acf_fields()
                     'name' => 'sign_lastname',
                     'instructions' => 'Responsible for {sign_lastname}',
                     'type' => 'text',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '34',
                         'class' => '',
@@ -397,7 +397,7 @@ function hr_platform_add_acf_fields()
                     'type' => 'date_picker',
                     'display_format' => 'j.m.Y',
                     'return_format' => 'j.m.Y',
-                    'required' => 1,
+                    'required' => 0,
                     'wrapper' => array(
                         'width' => '33',
                         'class' => '',

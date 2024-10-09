@@ -2,7 +2,7 @@
 /*
 Plugin Name: HR Platform
 Description: Platform for recruiters and HR
-Version: 1.1.3
+Version: 1.1.4
 Author: Shutko Dmytro
 Author URI: http://procoders.tech
 
@@ -65,13 +65,26 @@ function save_pdf_on_post_save($post_id, $post, $update)
 
 
 add_filter('esignature_content', function ($document_content, $document_id) {
-
     preg_match_all('/\{([^}]*)\}/', $document_content, $matches);
     $fields = $matches[1];
     foreach ($fields as $field) {
+        $option_value = get_option('dashboard_' . $document_id . '_' . $field) ?? 'not defined';
+
+        if (preg_match('/^\d{8}$/', $option_value)) {
+            $year = substr($option_value, 0, 4);
+            $month = substr($option_value, 4, 2);
+            $day = substr($option_value, 6, 2);
+
+            if (checkdate($month, $day, $year)) {
+                $formatted_date = date_i18n(get_option('date_format'), strtotime($option_value));
+               // $formatted_date = date('d F Y', strtotime($option_value));
+                $option_value = $formatted_date;
+            }
+        }
+
         $document_content = str_replace(
             '{' . $field . '}',
-            get_option('dashboard_' . $document_id . '_' . $field) ?? 'not defined',
+            $option_value,
             $document_content
         );
     }
@@ -108,7 +121,6 @@ add_filter('esig-document-notification-content', function () {
         $shortcodes_list .= '</ul></div>';
     }
 
-
     $html = '<div id="shortcodediv" class="postbox">';
     $html .= '<h2 class="hndle esig-section-title"><span>' . __('Shortcode List', 'hr-platform') . '</span></h2>';
     $html .= '<div class="inside">';
@@ -119,7 +131,12 @@ add_filter('esig-document-notification-content', function () {
 
 });
 
-function get_field_groups()
+/**
+ * Retrieves and organizes field groups and their corresponding fields.
+ *
+ * @return array An associative array of field groups, each containing a title and fields with their labels.
+ */
+function get_field_groups(): array
 {
     if (function_exists('acf_get_field_groups')) {
         $field_groups = acf_get_field_groups();
@@ -141,7 +158,28 @@ function get_field_groups()
     return $fields ?? [];
 }
 
-function get_field_group_by_doc_id($document_id)
+/**
+ * Retrieves the document type for a given document ID.
+ *
+ * @param int $id The ID of the document. Default value is 0.
+ * @return string|null The document type if found, null otherwise.
+ */
+function get_document_type(int $id = 0): ?string
+{
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'esign_documents';
+    return $wpdb->get_var($wpdb->prepare("
+        SELECT document_type FROM $table_name WHERE document_id = %d
+    ", $id));
+}
+
+/**
+ * Retrieves field groups by matching the document title with the given document ID.
+ *
+ * @param int $document_id The ID of the document.
+ * @return array An array of field group keys that match the document title, or all field groups if no match is found.
+ */
+function get_field_group_by_doc_id(int $document_id): array
 {
     global $wpdb;
     $table_name = $wpdb->prefix . 'esign_documents';
@@ -166,35 +204,47 @@ function get_field_group_by_doc_id($document_id)
     return $groups;
 }
 
-function render_form($doc_id)
+/**
+ * Renders a form for a given document ID.
+ *
+ * This method checks the document type and, if it is not of type 'esig_template',
+ * it renders an ACF form specific to the document. The form includes additional
+ * options and configurations based on the document ID and associated field groups.
+ *
+ * @param mixed $doc_id The ID of the document for which the form is to be rendered.
+ * @return mixed Returns the document ID.
+ */
+function render_form(mixed $doc_id): mixed
 {
 
-    acf_form_head();
-    if (function_exists('acf_add_options_sub_page')) {
-        acf_add_options_sub_page(array(
-            'page_title' => 'Dashboard unique options',
-            'menu_title' => 'Dashboard Options',
-            'parent_slug' => $doc_id,
-        ));
+    $doc_type = get_document_type($doc_id);
+    if ($doc_type !== 'esig_template') {
+        acf_form_head();
+        if (function_exists('acf_add_options_sub_page')) {
+            acf_add_options_sub_page(array(
+                'page_title' => 'Dashboard unique options',
+                'menu_title' => 'Dashboard Options',
+                'parent_slug' => $doc_id,
+            ));
+        }
+        echo '<div id="shortcodefielddiv" class="postbox">';
+        echo '<div class="inside">';
+        acf_form(
+            array(
+                'id' => 'acf-esign-form',
+                'post_id' => 'dashboard_' . $doc_id,
+                'new_post' => false,
+                'form' => false,
+                'instruction_placement' => 'field',
+                'field_groups' => get_field_group_by_doc_id($doc_id)
+            ,
+                'return' => admin_url('admin.php?post_type=esign'), // Redirect to same page after form is submitted
+                'html_before_fields' => '',
+                'html_after_fields' => '',
+            ));
+        echo '<style>#shortcodediv{display: none}.acf-fields > .acf-field{border: none!important}</style>';
+        echo '</div></div>';
     }
-    echo '<div id="shortcodefielddiv" class="postbox">';
-    echo '<div class="inside">';
-    acf_form(
-        array(
-            'id' => 'acf-esign-form',
-            'post_id' => 'dashboard_' . $doc_id,
-            'new_post' => false,
-            'form' => false,
-            'instruction_placement' => 'field',
-            'field_groups' => get_field_group_by_doc_id($doc_id)
-        ,
-            'return' => admin_url('admin.php?post_type=esign'), // Redirect to same page after form is submitted
-            'html_before_fields' => '',
-            'html_after_fields' => '',
-        ));
-    echo '<style>#shortcodediv{display: none}</style>';
-    echo '</div></div>';
-
     return $doc_id;
 }
 
